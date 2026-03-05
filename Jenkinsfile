@@ -1,34 +1,22 @@
 pipeline {
-agent any
+    agent any
 
-```
-stages {
-    stage('Clone Repository') {
-        steps {
-            git branch: 'main',
-            url: 'https://github.com/Surya3112-cloud/car-s3--sync.git'
+    stages {
+
+        stage('Clone Code') {
+            steps {
+                git 'https://github.com/Surya3112-cloud/car-s3--sync.git'
+            }
         }
-    }
 
-    stage('Deploy Static Site') {
-        steps {
-            sh '''
-            echo "Deploying static website..."
-            mkdir -p /var/www/html/car-site
-            cp -r * /var/www/html/car-site/
-            '''
+        stage('Deploy Website') {
+            steps {
+                sh '''
+                sudo rm -rf /var/www/html/*
+                sudo cp -r * /var/www/html/
+                '''
+            }
         }
-    }
-}
 
-post {
-    success {
-        echo 'Deployment successful!'
     }
-    failure {
-        echo 'Deployment failed!'
-    }
-}
-```
-
 }

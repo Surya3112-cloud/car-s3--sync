@@ -5,25 +5,26 @@ pipeline {
 
         stage('Clone Repository') {
             steps {
-                git 'https://github.com/Surya3112-cloud/car-s3--sync.git'
+                git branch: 'main',
+                url: 'https://github.com/Surya3112-cloud/car-s3--sync.git'
             }
         }
 
         stage('Build') {
             steps {
-                echo "Building the project..."
+                echo "Build Stage"
             }
         }
 
         stage('Test') {
             steps {
-                echo "Running tests..."
+                echo "Test Stage"
             }
         }
 
         stage('Deploy') {
             steps {
-                echo "Deploying application..."
+                echo "Deploy Stage"
             }
         }
 
